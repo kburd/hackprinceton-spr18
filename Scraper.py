@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib3 as lib
 
+
 class Scraper:
 
     def tag_visible(self, element):
@@ -25,7 +26,7 @@ class Scraper:
 
 
         #TODO
-        print(link.split("\\"))
+        #print(link.split("\\"))
 
         #TODO
         #Modify num at end of file
@@ -55,3 +56,7 @@ class Scraper:
         file = open('Articles/cnn1.txt', 'w')
         file.write(self.text_from_html(html))
         file.close()
+
+
+scraper = Scraper()
+scraper.scrape("http://www.foxnews.com/us/2018/03/31/jury-convinced-noor-salman-knew-pulse-nightclub-attack-but-had-no-option-but-to-acquit-foreman-says.html")

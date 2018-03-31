@@ -1,8 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-import Configuration
-import Indexer
-import NeuralNet
-import Scraper
+from Indexer import *
+from NeuralNet import *
+from Scraper import *
 
 def getValue(key, requestString):
 
@@ -89,7 +88,6 @@ def run():
     httpd = HTTPServer(server_address, RequestHandler)
     print('Running Erlich...')
     httpd.serve_forever()
-
 
 run()
 
