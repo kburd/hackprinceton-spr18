@@ -6,9 +6,9 @@ import os
 import nltk
 
 
-class Indexer:
+class Parser:
     
-    def indexText(self, fileDir):
+    def simpleParser(self, fileDir):
 
         file = open(fileDir, "r")
         rawText = file.read()
@@ -54,5 +54,5 @@ class Indexer:
 
         ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
 
-idx = Indexer()
+idx = Parser()
 idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')

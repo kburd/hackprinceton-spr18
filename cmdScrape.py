@@ -1,5 +1,4 @@
 from Scraper import *
-from Indexer_v2 import *
 import sys
 
 

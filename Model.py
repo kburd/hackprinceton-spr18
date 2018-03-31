@@ -1,8 +1,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from Indexer_v2 import *
+from Parser import *
 from Classifier import *
 from Scraper import *
-from Configuration import *
 
 def getValue(key, requestString):
 
@@ -47,7 +46,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == 'train':
 
-            config = Configuration()
             modelName = getValue("modelName", self.requestline)
 
             ml = Classifier()
@@ -58,7 +56,6 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == "test":
 
-            config = Configuration()
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
 
