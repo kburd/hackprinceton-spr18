@@ -1,4 +1,5 @@
 import os
+from Configuration import * 
 
 class Indexer:
 
@@ -14,10 +15,10 @@ class Indexer:
 
         for sub in subFolders:
 
-            subfolder = os.listdir(master + "\\" + sub)
+            subfolder = os.listdir(master + "/" + sub)
 
             for text in subfolder:
-                indexing = self.indexText(master + "\\" + sub + "\\" + text)
+                indexing = self.indexText(master + "/" + sub + "/" + text)
                 self.dict[text] = indexing
 
 
@@ -33,10 +34,20 @@ class Indexer:
 
         for word in words:
 
-            print(word)
+            #print(word)
 
             if word in self.indexedWords:
 
                 temp[self.indexedWords.index(word)] += 1
 
+        print(temp)
+
         return temp
+
+
+config = Configuration()
+indexer = Indexer(config)
+
+indexer.indexTestBank()
+
+print(indexer.dict)

@@ -2,6 +2,10 @@ from bs4 import BeautifulSoup
 from bs4.element import Comment
 import urllib3 as lib
 
+LEFT_BIAS_PATH = './Articles/LeftBias/'
+RIGHT_BIAS_PATH = './Articles/RightBias/'
+NEUTRAL_PATH = './Articles/UserQuery/'
+
 
 class Scraper:
 
@@ -18,7 +22,7 @@ class Scraper:
         visible_texts = filter(self.tag_visible, texts)
         return u" ".join(t.strip() for t in visible_texts)
 
-    def scrape(self, link):
+    def scrape(self, link, score=0.0):
 
         http = lib.PoolManager()
         response = http.request('GET', link)
@@ -37,7 +41,7 @@ class Scraper:
         # print(text_from_html(html))
         # html = urllib3.request.urlopen(link).read()
 
-        # JUNK TO USE LATER...
+        # pick out source from link (i.e. cnn, fox, msn, etc)
         # name_idx = link.index('www') + 4
         # outlet_name = link[name_idx:name_idx + 3]
 
@@ -45,15 +49,24 @@ class Scraper:
         # i = 1
         # while True:
         # 	try:
-        # 		open('Articles/' + outlet_name + str(i) + '.txt', 'a')
+        #         if score == 0.0:
+        #             open(NEUTRAL_PATH + outlet_name + str(i) + '.txt')
+        #         elif score < 0.5:
+        #             open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt')
+        #         else:
+        #             open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt')
         # 		i+=1
         # 		pass
         # 	except:
         # 		break
 
-        # file = open('Articles/' + outlet_name + str(i) + '.txt', 'w')
+        # if score == 0.0:
+        #     file = open(NEUTRAL_PATH + outlet_name + str(i) + '.txt', 'w')
+        # elif score < 0.5:
+        #     file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
+        # else:
+        #     file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
 
-        file = open('Articles/cnn1.txt', 'w')
         file.write(self.text_from_html(html))
         file.close()
 
