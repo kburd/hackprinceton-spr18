@@ -1,4 +1,6 @@
 import nltk
+import json
+from pathlib import Path
 from nltk.stem.lancaster import LancasterStemmer
 from Indexer_v2 import *
 
@@ -89,6 +91,24 @@ class Classifier:
             scores.append(score)
             
         return scores
+
+    def save(self, type):
+        # if type == "Test":
+            with open('SaveData/classwords.json', 'w') as fp:
+                json.dump(self.class_words, fp, sort_keys=True, indent=4)
+            with open('SaveData/corpuswords.json', 'w') as fp:
+                json.dump(self.corpus_words, fp, sort_keys=True, indent=4)            
+
+    def load(self, type):
+        # if type == "Test":
+            classFile = Path("SaveData/classwords.json")
+            wordFile = Path("SaveData/corpuswords.json")
+            if classFile.exists():
+                with open('SaveData/classwords.json', 'r') as fp:
+                    self.class_words = json.load(fp)
+            if wordFile.exists():
+                with open('SaveData/corpuswords.json', 'r') as fp:
+                    self.corpus_words = json.load(fp)
 
 classifier = Classifier()
 classifier.train()
