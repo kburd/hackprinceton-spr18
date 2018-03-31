@@ -24,7 +24,14 @@ def getValue(key, requestString):
 
 def biasCalculation(outputs):
     
-    return str(len(outputs))
+    string = ''
+    
+    print(outputs)
+    
+    for out in outputs:
+        string += str(out) + ' '
+        
+    return string
 
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -58,13 +65,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             scraper = Scraper()
             scraper.scrape(link)
 
-            indexer = Indexer()
-            analyze = indexer.indexText('./Articles/UserQuery.txt')
-
             ml = Classifier()
             ml.load(modelName)
             outputs = ml.test('./Articles/UserQuery.txt')
-            print(outputs)
             message = biasCalculation(outputs)
 
         # Send response status code

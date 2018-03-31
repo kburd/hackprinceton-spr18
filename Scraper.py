@@ -29,8 +29,6 @@ class Scraper:
         response = http.request('GET', link)
         html = response.data
         
-        print('2.1')
-        
         if 'www' in link:
             name_idx = link.index('www.') + 4
         elif 'https://' in link:

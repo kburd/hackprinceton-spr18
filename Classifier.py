@@ -84,16 +84,26 @@ class Classifier:
                     print ("   match: %s (%s)" % (self.stemmer.stem(word.lower()), 1 / self.corpus_words[self.stemmer.stem(word.lower())]))
         return score
 
-    def test(self, link):
+    def test(self, filename):
         
-        scores = []
-        # loop through classes
-        for c in self.class_words.keys():
-            # calculate score of sentence for each class
-            score = self.calculateClassScore(sentence, c, show_details=False)
-            scores.append(score)
+        if os.path.exists(filename):
+
+            indexer = Indexer()
+            sentences = indexer.indexText(filename)
             
-        return scores
+            sentence = 'a washington cnn affair'
+        
+            scores = []
+            # loop through classes
+            for c in self.class_words.keys():
+                # calculate score of sentence for each class
+                score = self.calculateClassScore(sentence, c, show_details=False)
+                scores.append(score)
+                
+            return scores
+        
+        else:
+            return None
 
     def save(self, modelName):
         
@@ -106,11 +116,11 @@ class Classifier:
             json.dump(self.corpus_words, fp, sort_keys=True, indent=4)            
 
     def load(self, modelName):
-        classFile = Path('SaveData/' + modelName + '/classwords.json')
-        wordFile = Path('SaveData/' + modelName + '/corpuswords.json')
-        if classFile.exists():
+        classFile = 'SaveData/' + modelName + '/classwords.json'
+        wordFile = 'SaveData/' + modelName + '/corpuswords.json'
+        if os.path.exists(classFile):
             with open(classFile, 'r') as fp:
                 self.class_words = json.load(fp)
-        if wordFile.exists():
+        if os.path.exists(wordFile):
             with open(wordFile, 'r') as fp:
                 self.corpus_words = json.load(fp)
