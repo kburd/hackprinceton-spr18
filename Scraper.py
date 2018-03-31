@@ -37,9 +37,9 @@ class Scraper:
 
         # pick out source from link (i.e. cnn, fox, msn, etc)
         
-        if link.indexOf('www') > -1:
+        if 'www' in link:
             name_idx = link.index('www.') + 4
-        elif link.indexOf('https://') > -1:
+        elif 'https://' in link:
             name_idx = link.index('https://') + len('https://')
             
         outlet_name = link[name_idx:name_idx + 3]
