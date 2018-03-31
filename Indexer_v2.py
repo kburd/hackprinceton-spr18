@@ -48,9 +48,11 @@ class Indexer:
             # elif w.isnumeric():
             #     pass
             else:
-                file.write(w + " ")
+                file.write(w.lower() + " ")
 
         file.close()
 
+        ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
+
 idx = Indexer()
-idx.remove_stop_words_and_punctuation('Articles/UserQuery/bno3.txt')
+idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
