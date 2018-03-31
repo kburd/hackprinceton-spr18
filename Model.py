@@ -1,6 +1,6 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from Indexer import *
-from NeuralNet import *
+from Indexer_v2 import *
+from Classifier import *
 from Scraper import *
 
 def getValue(key, requestString):
@@ -38,12 +38,9 @@ class RequestHandler(BaseHTTPRequestHandler):
             config = Configuration()
             filename = getValue("filename", self.requestline)
 
-            indexer = Indexer(config)
-            indexer.indexTestBank()
-
-            net = NeuralNetwork(config, filename)
-            #Train test bank one subfolder at a time to make training easy
-            net.save("Test")
+            ml = Classifier()
+            ml.train()
+##            ml.save("Test")
 
             message = "Training Successful"
 
@@ -54,15 +51,15 @@ class RequestHandler(BaseHTTPRequestHandler):
             filename = getValue("filename", self.requestline)
 
             scraper = Scraper()
-            textFile = scraper.scrape(link)
+            scraper.scrape(link)
+            filename = 'TBD'
 
             indexer = Indexer()
             analyze = indexer.indexText(textFile)
 
-            net = NeuralNetwork(config, filename)
-            net.load("Temp")
-
-            bias = net.predict(analyze)
+            ml = Classifier()
+            ##ml.load("Test")
+            bias = ml.test(link)
             message = bias
 
         # Send response status code

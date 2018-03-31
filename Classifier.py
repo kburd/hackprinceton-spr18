@@ -25,7 +25,6 @@ class Classifier:
             subFolders.remove('.DS_Store')
 
         for sub in subFolders:
-            print(sub)
             subfolder = os.listdir(master + "/" + sub)
             
             if '.DS_Store' in subfolder:
