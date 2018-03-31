@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from Indexer_v2 import *
 from Classifier import *
 from Scraper import *
+from Configuration import *
 
 def getValue(key, requestString):
 
@@ -21,6 +22,10 @@ def getValue(key, requestString):
 
             return tempValue
 
+def biasCalculation(outputs):
+    
+    return str(len(outputs))
+
 
 class RequestHandler(BaseHTTPRequestHandler):
 
@@ -36,11 +41,11 @@ class RequestHandler(BaseHTTPRequestHandler):
         if mode == 'train':
 
             config = Configuration()
-            filename = getValue("filename", self.requestline)
+            modelName = getValue("modelName", self.requestline)
 
             ml = Classifier()
             ml.train()
-##            ml.save("Test")
+            ml.save(modelName)
 
             message = "Training Successful"
 
@@ -48,19 +53,19 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             config = Configuration()
             link = getValue("link", self.requestline)
-            filename = getValue("filename", self.requestline)
+            modelName = getValue("modelName", self.requestline)
 
             scraper = Scraper()
             scraper.scrape(link)
-            filename = 'TBD'
 
             indexer = Indexer()
-            analyze = indexer.indexText(textFile)
+            analyze = indexer.indexText('./Articles/UserQuery.txt')
 
             ml = Classifier()
-            ##ml.load("Test")
-            bias = ml.test(link)
-            message = bias
+            ml.load(modelName)
+            outputs = ml.test('./Articles/UserQuery.txt')
+            print(outputs)
+            message = biasCalculation(outputs)
 
         # Send response status code
         self.send_response(200)

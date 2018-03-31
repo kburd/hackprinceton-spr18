@@ -5,6 +5,7 @@ import urllib3 as lib
 LEFT_BIAS_PATH = './Articles/LeftBias/'
 RIGHT_BIAS_PATH = './Articles/RightBias/'
 NEUTRAL_PATH = './Articles/UserQuery/'
+QUERY_PATH = './Articles/UserQuery.txt'
 
 
 class Scraper:
@@ -22,20 +23,13 @@ class Scraper:
         visible_texts = filter(self.tag_visible, texts)
         return u" ".join(t.strip() for t in visible_texts)
 
-    def scrape(self, link, score=0.0):
+    def scrape(self, link, score=None):
 
         http = lib.PoolManager()
         response = http.request('GET', link)
         html = response.data
-
-
-        #TODO
-        #print(link.split("\\"))
-
-        #TODO
-        #Modify num at end of file
-
-        # pick out source from link (i.e. cnn, fox, msn, etc)
+        
+        print('2.1')
         
         if 'www' in link:
             name_idx = link.index('www.') + 4
@@ -46,7 +40,7 @@ class Scraper:
 
         # iterate to find the next available number
         i = 1
-        while True:
+        while score != None:
             # check if file# exists
             try:
                 if score == 0.0:
@@ -61,7 +55,9 @@ class Scraper:
                 break
 
         # add article to dedicated folder (0=No Bias, <0.5=Left Bias, >0.5=Right Bias)
-        if score == 0.0:
+        if score == None:
+            file = open(QUERY_PATH,'w')  
+        elif score == 0.0:
             file = open(NEUTRAL_PATH + outlet_name + str(i) + '.txt', 'w')
         elif score < 0.5:
             file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
@@ -70,7 +66,3 @@ class Scraper:
 
         file.write(self.text_from_html(html))
         file.close()
-
-
-scraper = Scraper()
-scraper.scrape("http://www.foxnews.com/us/2018/03/31/jury-convinced-noor-salman-knew-pulse-nightclub-attack-but-had-no-option-but-to-acquit-foreman-says.html")

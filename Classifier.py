@@ -25,6 +25,9 @@ class Classifier:
         
         if '.DS_Store' in subFolders:
             subFolders.remove('.DS_Store')
+            
+        if 'UserQuery.txt' in subFolders:
+            subFolders.remove('UserQuery.txt')
 
         for sub in subFolders:
             subfolder = os.listdir(master + "/" + sub)
@@ -81,7 +84,7 @@ class Classifier:
                     print ("   match: %s (%s)" % (self.stemmer.stem(word.lower()), 1 / self.corpus_words[self.stemmer.stem(word.lower())]))
         return score
 
-    def test(self, sentence):
+    def test(self, link):
         
         scores = []
         # loop through classes
@@ -92,38 +95,22 @@ class Classifier:
             
         return scores
 
-    def save(self, type):
-        # if type == "Test":
-            with open('SaveData/classwords.json', 'w') as fp:
-                json.dump(self.class_words, fp, sort_keys=True, indent=4)
-            with open('SaveData/corpuswords.json', 'w') as fp:
-                json.dump(self.corpus_words, fp, sort_keys=True, indent=4)            
+    def save(self, modelName):
+        
+        if not os.path.exists('SaveData/' + modelName):
+            os.makedirs('SaveData/' + modelName)
+        
+        with open('SaveData/' + modelName + '/classwords.json', 'w') as fp:
+            json.dump(self.class_words, fp, sort_keys=True, indent=4)
+        with open('SaveData/' + modelName + '/corpuswords.json', 'w') as fp:
+            json.dump(self.corpus_words, fp, sort_keys=True, indent=4)            
 
-    def load(self, type):
-        # if type == "Test":
-            classFile = Path("SaveData/classwords.json")
-            wordFile = Path("SaveData/corpuswords.json")
-            if classFile.exists():
-                with open('SaveData/classwords.json', 'r') as fp:
-                    self.class_words = json.load(fp)
-            if wordFile.exists():
-                with open('SaveData/corpuswords.json', 'r') as fp:
-                    self.corpus_words = json.load(fp)
-
-classifier = Classifier()
-classifier.train()
-print(classifier.test("this is the end of the world"))
-
-
-
-##scores = []
-##
-##def get_all_scores(sentence):
-##    # loop through classes
-##    for c in class_words.keys():
-##        # calculate score of sentence for each class
-##        score = calculate_class_score(sentence, c, show_details=False)
-##        scores.append(score)
-##    return scores
-##
-##print(get_all_scores("this is the end of the world"))  
+    def load(self, modelName):
+        classFile = Path('SaveData/' + modelName + '/classwords.json')
+        wordFile = Path('SaveData/' + modelName + '/corpuswords.json')
+        if classFile.exists():
+            with open(classFile, 'r') as fp:
+                self.class_words = json.load(fp)
+        if wordFile.exists():
+            with open(wordFile, 'r') as fp:
+                self.corpus_words = json.load(fp)
