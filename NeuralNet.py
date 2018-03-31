@@ -1,5 +1,8 @@
 import os
 import tensorflow as tf
+from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets("MNIST_data/", one_hot=True)
+from Configuration import *
 
 class NeuralNetwork:
 
@@ -58,3 +61,11 @@ class NeuralNetwork:
 
         saver = tf.train.Saver()
         saver.restore(self.sess, "/tmp/" + filename + "/test.ckpt")
+
+config = Configuration()
+model = NeuralNetwork(config,"temp")
+
+
+# for _ in range(1000):
+#   batch_xs, batch_ys = mnist.train.next_batch(1)
+#   model.train(batch_xs[0], batch_ys[0])

@@ -1,4 +1,4 @@
-from Main import Scraper
+from Scraper import *
 import sys
 
 

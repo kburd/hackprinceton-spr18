@@ -1,4 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+import Configuration
+import Indexer
+import NeuralNet
+import Scraper
 
 def getValue(key, requestString):
 
