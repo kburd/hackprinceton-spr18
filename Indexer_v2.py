@@ -13,18 +13,15 @@ class Indexer:
         subFolders = os.listdir(master)
 
         for sub in subFolders:
-            
+            # print(sub)
             if os.path.isdir(master + "/" + sub):
-
+                # print(sub)
                 subfolder = os.listdir(master + "/" + sub)
-                
-            else:
-                
-                subfolder = []
 
-            for text in subfolder:
-                indexing = self.indexText(master + "/" + sub + "/" + text)
-                self.dict[text] = indexing
+                for text in subfolder:
+                    if text != '.DS_Store':
+                        indexing = self.indexText(master + "/" + sub + "/" + text)
+                        self.dict[text] = indexing
 
 
     def indexText(self, fileDir):
