@@ -42,30 +42,32 @@ class Scraper:
         # html = urllib3.request.urlopen(link).read()
 
         # pick out source from link (i.e. cnn, fox, msn, etc)
-        # name_idx = link.index('www') + 4
-        # outlet_name = link[name_idx:name_idx + 3]
+        name_idx = link.index('www') + 4
+        outlet_name = link[name_idx:name_idx + 3]
 
-        # # iterate to find the next available number
-        # i = 1
-        # while True:
-        # 	try:
-        #         if score == 0.0:
-        #             open(NEUTRAL_PATH + outlet_name + str(i) + '.txt')
-        #         elif score < 0.5:
-        #             open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt')
-        #         else:
-        #             open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt')
-        # 		i+=1
-        # 		pass
-        # 	except:
-        # 		break
+        # iterate to find the next available number
+        i = 1
+        while True:
+            # check if file# exists
+            try:
+                if score == 0.0:
+                    open(NEUTRAL_PATH + outlet_name + str(i) + '.txt')
+                elif score < 0.5:
+                    open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt')
+                else:
+                    open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt')
+                i+=1
+                pass
+            except:
+                break
 
-        # if score == 0.0:
-        #     file = open(NEUTRAL_PATH + outlet_name + str(i) + '.txt', 'w')
-        # elif score < 0.5:
-        #     file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
-        # else:
-        #     file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
+        # add article to dedicated folder (0=No Bias, <0.5=Left Bias, >0.5=Right Bias)
+        if score == 0.0:
+            file = open(NEUTRAL_PATH + outlet_name + str(i) + '.txt', 'w')
+        elif score < 0.5:
+            file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
+        else:
+            file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
 
         file.write(self.text_from_html(html))
         file.close()
