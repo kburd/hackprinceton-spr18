@@ -35,14 +35,13 @@ class Scraper:
         #TODO
         #Modify num at end of file
 
-        #TODO
-        #Determine what sub folder to place it in
-
-        # print(text_from_html(html))
-        # html = urllib3.request.urlopen(link).read()
-
         # pick out source from link (i.e. cnn, fox, msn, etc)
-        name_idx = link.index('www') + 4
+        
+        if link.indexOf('www') > -1:
+            name_idx = link.index('www.') + 4
+        elif link.indexOf('https://') > -1:
+            name_idx = link.index('https://') + len('https://')
+            
         outlet_name = link[name_idx:name_idx + 3]
 
         # iterate to find the next available number

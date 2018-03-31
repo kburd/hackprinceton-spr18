@@ -3,10 +3,9 @@ from Configuration import *
 
 class Indexer:
 
-    def __init__(self, config):
+    def __init__(self):
 
         self.dict = {}
-        self.indexedWords = config.keywords
 
     def indexTestBank(self):
 
@@ -40,27 +39,14 @@ class Indexer:
             
         print('_________________________________________')
 
-##        words = rawText.replace(".", "").replace(",", "").replace('"', "").replace(')', "").replace('(', "")\
-##            .replace('?', "").replace(':', "").lower().split(" ")
-##
-##        temp = [0]*len(self.indexedWords)
-##
-##        for word in words:
-##
-##            #print(word)
-##
-##            if word in self.indexedWords:
-##
-##                temp[self.indexedWords.index(word)] += 1
+
 ##
 ##        print(temp)
 ##
-##        return temp
-
-
-config = Configuration()
-indexer = Indexer(config)
-
-indexer.indexTestBank()
+        return text
+##
+##indexer = Indexer()
+##
+##indexer.indexTestBank()
 
 ##print(indexer.dict)
