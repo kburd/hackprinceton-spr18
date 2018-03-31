@@ -30,9 +30,11 @@ class Scraper:
         html = response.data
         
         if 'www' in link:
-            name_idx = link.index('www.') + 4
+            name_idx = link.index('www.') + len('www.')
         elif 'https://' in link:
             name_idx = link.index('https://') + len('https://')
+        elif 'http://' in link:
+            name_idx = link.index('http://') + len('http://')
             
         outlet_name = link[name_idx:name_idx + 3]
 
@@ -54,16 +56,22 @@ class Scraper:
 
         # add article to dedicated folder (0=No Bias, <0.5=Left Bias, >0.5=Right Bias)
         if score == None:
-            file = open(QUERY_PATH,'w')  
+            file_name = ""
+            file = open(QUERY_PATH,'w') 
         elif score == 0.0:
-            file = open(NEUTRAL_PATH + outlet_name + str(i) + '.txt', 'w')
+            file_name = NEUTRAL_PATH + outlet_name + str(i) + '.txt'
+            file = open(file_name, 'w')
         elif score < 0.5:
+            file_name = LEFT_BIAS_PATH + outlet_name + str(i) + '.txt'
             file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
         else:
-            file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
+            file_name = RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt'
+            file = open(file_name, 'w')
 
         file.write(self.text_from_html(html))
         file.close()
 
-s = Scraper()
-s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')
+        return file_name
+
+# s = Scraper()
+# s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')

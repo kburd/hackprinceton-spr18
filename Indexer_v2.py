@@ -24,7 +24,7 @@ class Indexer:
 
         # declare standard 'stop word' along with punctuation (except periods)
         stop_words = set(nltk.corpus.stopwords.words('english'))
-        stop_words.update(',', '"', "'", ":", ";", "|", "(", ")", "`")
+        stop_words.update(',', '"', "'", ":", ";", "|", "(", ")", "`", "©", "@", "#", "$", "%", "/", "//")
 
         word_tokens = nltk.word_tokenize(text)
         word_tokens[:] = [x for x in word_tokens if x != "''"]
@@ -54,5 +54,5 @@ class Indexer:
 
         ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
 
-idx = Indexer()
-idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+# idx = Indexer()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')

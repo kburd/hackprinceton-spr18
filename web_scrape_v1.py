@@ -49,7 +49,8 @@ if __name__ == "__main__":
 	# print('hi')
 	# print(HTML('<iframe src=http://www.aflcio.org/Legislation-and-Politics/Legislative-Alerts width=700 height=500></iframe>'))
 
-	html = lib.request.urlopen('http://www.nytimes.com/2009/12/21/us/21storm.html').read()
-	print(text_from_html(html))
+	# html = lib.request.urlopen('http://www.nytimes.com/2009/12/21/us/21storm.html').read()
+	# print(text_from_html(html))
+	find_other_articles('http://www.nytimes.com/2009/12/21/us/21storm.html')
 
 
