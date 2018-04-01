@@ -54,10 +54,7 @@ class Parser:
 
         ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
 
-<<<<<<< HEAD:Indexer_v2.py
 # idx = Indexer()
 # idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
-=======
 idx = Parser()
 idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
->>>>>>> ba226e473fb86a0efe411bd273cc088bc3cf1b99:Parser.py

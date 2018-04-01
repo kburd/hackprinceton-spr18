@@ -70,11 +70,9 @@ class Scraper:
 
         file.write(self.text_from_html(html))
         file.close()
-<<<<<<< HEAD
 
         return file_name
 
 # s = Scraper()
 # s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')
-=======
->>>>>>> ba226e473fb86a0efe411bd273cc088bc3cf1b99
+

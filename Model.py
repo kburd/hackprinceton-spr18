@@ -1,8 +1,8 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from Indexer_v2 import *
+from Parser import *
 from Classifier import *
 from Scraper import *
-from Configuration import *
+# from Configuration import *
 import sys
 
 def getValue(key, requestString):
@@ -103,7 +103,7 @@ if __name__ == "__main__":
     # if len(args) > 1:
     #     scr = Scraper()
     #     latest_file = scr.scrape(args[1], 0.9)
-    #     idx = Indexer()
+    #     idx = Parser()
     #     idx.remove_stop_words_and_punctuation(latest_file)
 
 
