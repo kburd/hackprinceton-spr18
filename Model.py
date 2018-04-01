@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
+from Configuration import *
 
 def getValue(key, requestString):
 
