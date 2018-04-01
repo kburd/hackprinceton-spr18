@@ -24,20 +24,22 @@ def getValue(key, requestString):
         
 def getHTML(result):
     
+    image = "file:///home/pi/Documents/Erlik/ScalePhotos/"
+    
     if result == -1:
-        image = "ScalePhotos/Left.png"
+        image += "Left.png"
         
     elif result == -.5:
-        image = "ScalePhotos/LeftCenter.png"
+        image += "LeftCenter.png"
         
     elif result == 0:
-        image = "ScalePhotos/Center.png"
+        image += "Center.png"
         
     elif result == .5:
-        image = "ScalePhotos/RightCenter.png"
+        image += "RightCenter.png"
         
     elif result == 1:
-        image = "ScalePhotos/Right.png"
+        image += "Right.png"
         
     else:
         image = ""
@@ -52,8 +54,9 @@ def getHTML(result):
     for line in lines:
         if line == "*image*":
             line = "src=" + image + " "
+            #print(line)
         string += line
-          
+    print(string)      
     return string
 
 def biasCalculation(outputs):
@@ -109,8 +112,6 @@ class RequestHandler(BaseHTTPRequestHandler):
             message = "Training Successful"
 
         if mode == "test":
-            
-            print(self.requestline)
 
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
@@ -125,14 +126,12 @@ class RequestHandler(BaseHTTPRequestHandler):
             
             message = getHTML(result)
 
-        else:
-            print(self.requestline)
-            string = self.requestline
-            string = string.replace("GET /", "")
-            index = string.index(" ")
-            file = open(string[:index],"rb")
-            message = "Here" #file.read()
+        elif mode == "img":
+            
+            fileName = getValue("file", self.requestline)
+            print(fileName) #file.read()
             #return file(string
+
 
         # Send response status code
         self.send_response(200)
