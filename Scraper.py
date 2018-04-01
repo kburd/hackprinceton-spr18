@@ -31,8 +31,13 @@ class Scraper:
         
         if 'www' in link:
             name_idx = link.index('www.') + len('www.')
+            
         elif 'https://' in link:
             name_idx = link.index('https://') + len('https://')
+
+        elif 'http://' in link:
+            name_idx = link.index('http://') + len('http://')
+            
         elif 'http://' in link:
             name_idx = link.index('http://') + len('http://')
             
@@ -67,6 +72,7 @@ class Scraper:
         else:
             file_name = RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt'
             file = open(file_name, 'w')
+            file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
 
         file.write(self.text_from_html(html))
         file.close()

@@ -8,7 +8,7 @@ import nltk
 
 class Parser:
     
-    def simpleParser(self, fileDir):
+    def simpleParse(self, fileDir):
 
         file = open(fileDir, "r")
         rawText = file.read()
@@ -17,7 +17,8 @@ class Parser:
 
         return text
 
-    def remove_stop_words_and_punctuation(self, filePath):
+    def complexParse(self, filePath):
+        
         file = open(filePath)
         text = file.read()
         file.close()
@@ -51,10 +52,14 @@ class Parser:
                 file.write(w.lower() + " ")
 
         file.close()
-
-        ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
+        
+        
+        file = open(filePath)
+        text = file.read()
+        
+        return text.strip('/n').split('/n')
 
 # idx = Indexer()
 # idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
-idx = Parser()
-idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+# idx = Parser()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')

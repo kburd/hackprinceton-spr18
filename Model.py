@@ -65,11 +65,17 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             scraper = Scraper()
             scraper.scrape(link)
+            
+            print("1")
 
             ml = Classifier()
+            print('2')
             ml.load(modelName)
+            print('3')
             outputs = ml.test('./Articles/UserQuery.txt')
+            print('4')
             message = biasCalculation(outputs)
+            print('5')
 
         # Send response status code
         self.send_response(200)
@@ -97,17 +103,4 @@ def run():
 
 if __name__ == "__main__":
     run()
-
-    # # to run article scraper and clean it up:
-    # args = sys.argv
-    # if len(args) > 1:
-    #     scr = Scraper()
-    #     latest_file = scr.scrape(args[1], 0.9)
-    #     idx = Parser()
-    #     idx.remove_stop_words_and_punctuation(latest_file)
-
-
-
-
-
 
