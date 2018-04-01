@@ -2,6 +2,8 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
+# from Configuration import *
+import sys
 
 def getValue(key, requestString):
 
@@ -46,6 +48,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == 'train':
 
+            config = Configuration()
             modelName = getValue("modelName", self.requestline)
 
             ml = Classifier()
@@ -56,6 +59,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == "test":
 
+            config = Configuration()
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
 
@@ -97,7 +101,18 @@ def run():
     print('Running Erlich...')
     httpd.serve_forever()
 
-run()
+if __name__ == "__main__":
+    run()
+
+    # # to run article scraper and clean it up:
+    # args = sys.argv
+    # if len(args) > 1:
+    #     scr = Scraper()
+    #     latest_file = scr.scrape(args[1], 0.9)
+    #     idx = Parser()
+    #     idx.remove_stop_words_and_punctuation(latest_file)
+
+
 
 
 
