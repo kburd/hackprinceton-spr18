@@ -18,7 +18,7 @@ class Classifier:
 
         # read training data
         content = []
-        indexer = Indexer()
+        parser = Parser()
         
         master = "Articles"
         subFolders = os.listdir(master)
@@ -37,7 +37,7 @@ class Classifier:
 
             for text in subfolder:
                 
-                content = indexer.indexText(master + "/" + sub + "/" + text)
+                content = parser.simpleParse(master + "/" + sub + "/" + text)
                 for next in content:
                     training_data.append({"class":sub, "sentence":next})
                     
@@ -64,13 +64,7 @@ class Classifier:
                     # add the word to our words in class list
                     self.class_words[data['class']].extend([stemmed_word])
 
-        # we now have each stemmed word and the number of occurances of the word in our training corpus (the word's commonality)
-##        print ("Corpus words and counts: %s \n" % corpus_words)
-##        # also we have all words in each class
-##        print ("Class words: %s" % class_words)
-##        print("\n")
-
-# calculate a score for a given class taking into account word commonality
+    # calculate a score for a given class taking into account word commonality
     def calculateClassScore(self, sentence, class_name, show_details=True):
         score = 0
         # tokenize each word in our new sentence
@@ -89,21 +83,32 @@ class Classifier:
         if os.path.exists(filename):
 
             parser = Parser()
-            sentences = parser.simpleParser(filename)
-            
-            sentence = 'a washington cnn affair'
+            print(filename)
+            sentences = parser.simpleParse(filename)
         
-            scores = []
-            # loop through classes
-            for c in self.class_words.keys():
-                # calculate score of sentence for each class
-                score = self.calculateClassScore(sentence, c, show_details=False)
-                scores.append(score)
+            scores = [0]*len(self.class_words.keys())
+            
+            for i in range(len(sentences)):
+                 
+                # loop through classes
+                count = 0
+                print(self.class_words.keys())
+                for c in self.class_words.keys():
+                    # calculate score of sentence for each class
+                    score = self.calculateClassScore(sentences[i], c, show_details=False)
+                    
+                    scores[count] += score
+                    count += 1
+                    
+            print(scores)        
+            for j in range(len(scores)):
+                scores[j] /= len(sentences)
                 
+            print(scores)      
             return scores
         
         else:
-            return None
+            return 'None'
 
     def save(self, modelName):
         

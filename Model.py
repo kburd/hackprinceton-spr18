@@ -61,11 +61,17 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             scraper = Scraper()
             scraper.scrape(link)
+            
+            print("1")
 
             ml = Classifier()
+            print('2')
             ml.load(modelName)
+            print('3')
             outputs = ml.test('./Articles/UserQuery.txt')
+            print('4')
             message = biasCalculation(outputs)
+            print('5')
 
         # Send response status code
         self.send_response(200)

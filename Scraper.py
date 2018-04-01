@@ -34,6 +34,9 @@ class Scraper:
         elif 'https://' in link:
             name_idx = link.index('https://') + len('https://')
             
+        elif 'http://' in link:
+            name_idx = link.index('http://') + len('http://')
+            
         outlet_name = link[name_idx:name_idx + 3]
 
         # iterate to find the next available number
@@ -61,6 +64,7 @@ class Scraper:
             file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
         else:
             file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
+  
 
         file.write(self.text_from_html(html))
         file.close()
