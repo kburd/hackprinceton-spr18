@@ -25,19 +25,19 @@ def getValue(key, requestString):
 def getHTML(result):
     
     if result == -1:
-        image = "Left.png"
+        image = "ScalePhotos/Left.png"
         
     elif result == -.5:
-        image = "LeftCenter.png"
+        image = "ScalePhotos/LeftCenter.png"
         
     elif result == 0:
-        image = "Center.png"
+        image = "ScalePhotos/Center.png"
         
     elif result == .5:
-        image = "RightCenter.png"
+        image = "ScalePhotos/RightCenter.png"
         
     elif result == 1:
-        image = "Right.png"
+        image = "ScalePhotos/Right.png"
         
     else:
         image = ""
@@ -51,9 +51,9 @@ def getHTML(result):
     
     for line in lines:
         if line == "*image*":
-            line = "src="+image
+            line = "src=" + image + " "
         string += line
-        
+          
     return string
 
 def biasCalculation(outputs):
@@ -79,7 +79,7 @@ def biasCalculation(outputs):
     else:
         result = 0
         
-    print(string + " " + str(result))
+    #print(string + " " + str(result))
 
     return result
 
@@ -109,6 +109,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             message = "Training Successful"
 
         if mode == "test":
+            
+            print(self.requestline)
 
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
@@ -123,7 +125,14 @@ class RequestHandler(BaseHTTPRequestHandler):
             
             message = getHTML(result)
 
-
+        else:
+            print(self.requestline)
+            string = self.requestline
+            string = string.replace("GET /", "")
+            index = string.index(" ")
+            file = open(string[:index],"rb")
+            message = "Here" #file.read()
+            #return file(string
 
         # Send response status code
         self.send_response(200)
