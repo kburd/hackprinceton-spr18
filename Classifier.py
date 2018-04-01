@@ -2,7 +2,7 @@ import nltk
 import json
 from pathlib import Path
 from nltk.stem.lancaster import LancasterStemmer
-from Indexer_v2 import *
+from Parser import *
 
 class Classifier:
     
@@ -88,8 +88,8 @@ class Classifier:
         
         if os.path.exists(filename):
 
-            indexer = Indexer()
-            sentences = indexer.indexText(filename)
+            parser = Parser()
+            sentences = parser.simpleParser(filename)
             
             sentence = 'a washington cnn affair'
         
