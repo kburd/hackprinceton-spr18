@@ -78,12 +78,6 @@ class Scraper:
 
         return file_name
 
-<<<<<<< HEAD
-=======
 # s = Scraper()
 # s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
->>>>>>> 29ffb32d14845b1a84e86f6ba738b58dae3f80e6
