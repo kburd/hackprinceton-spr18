@@ -95,23 +95,16 @@ def run():
 run()
 
 if __name__ == "__main__":
-    #run()
+    run()
 
     # # to run article scraper and clean it up:
 
-    # args = sys.argv
-    # if len(args) > 1:
-    #     scr = Scraper()
-    #     latest_file = scr.scrape(args[1], 0.9)
-    #     idx = Parser()
-    #     idx.remove_stop_words_and_punctuation(latest_file)
-
-    args = sys.argv
-    if len(args) > 1:
-        scr = Scraper()
-        latest_file = scr.scrape(args[1], 0.1)
-        idx = Parser()
-        idx.remove_stop_words_and_punctuation(latest_file)
+#     args = sys.argv
+#     if len(args) > 1:
+#         scr = Scraper()
+#         latest_file = scr.scrape(args[1], 0.1)
+#         idx = Parser()
+#         idx.remove_stop_words_and_punctuation(latest_file)
 
 
 
