@@ -48,7 +48,7 @@ def getHTML(result):
         bias_rating += "<p style='color:Tomato;'>ALT-RIGHT</p>"
         
     else:
-        image += ""
+        image = ""
         bias_rating += ""
 
     bias_rating += "</font></b></p>"
