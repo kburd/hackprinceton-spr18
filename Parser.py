@@ -62,8 +62,8 @@ class Parser:
 # idx = Indexer()
 # idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
 
-idx = Parser()
-idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+# idx = Parser()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
 
 # idx = Parser()
 # idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
