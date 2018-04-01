@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html id = "main">
 <head>
 <title>Page Title</title>
 </head>
@@ -8,15 +8,36 @@
 <h1>Echo Bachman</h1>
 <br>
 <br>
-<input type="text" placeholder="Search" size="50%">
-<button>Search</button>
+<input id="bar" type="text" placeholder="Search" size="50%">
+<button onclick=sendRequest()>Search</button>
 <br>
 <br>
 <br>
 <img 
-	*image*
+*image*
 width=300>
 </center>
 
 </body>
+
+<script>
+
+function sendRequest(){
+var theUrl = "http://127.0.0.1:8080/mode=test&modelName=AR15&link=" + document.getElementById("bar").value;
+var xhr = new XMLHttpRequest();
+xhr.open("GET",theUrl, true);
+xhr.setRequestHeader("Access-Controll-Allow-Origin","*");
+xhr.send();
+xhr.onreadystatechange=processRequest;
+
+function processRequest(e){
+if(xhr.readyState == 4 && xhr.status == 200){
+document.getElementById("main").innerHTML = xhr.responseText;
+}
+}
+
+}
+
+</script>
+
 </html>

@@ -26,6 +26,7 @@ class Scraper:
     def scrape(self, link, score=None):
 
         http = lib.PoolManager()
+        #input(link)
         response = http.request('GET', link)
         html = response.data
         
