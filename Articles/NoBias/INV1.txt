@@ -1,0 +1,40 @@
+
+QCOM
+Qualcomm Inc
+55.41 +1.30%
+AVGO
+Broadcom Ltd
+235.65 -0.43%
+View Watchlist
+President Donald Trump’s administration is willing to do whatever it takes to prevent foreign companies from gaining an advantage over their U.S. counterparts in a key industry.
+
+On Monday, the government controversially vetoed chipmaker Broadcom Ltd.’s (AVGO
+AVGO
+Broadcom Ltd
+235.65
+-0.43%
+ 
+) $117 billion planned hostile takeover of chipmaker Qualcomm Inc. (QCOM
+QCOM
+Qualcomm Inc
+55.41
++1.30%
+ 
+). In his presidential order, Trump said there was "credible evidence" to suggest that Broadcom "through exercising control of Qualcomm Incorporated (Qualcomm), a Delaware corporation, might take action that threatens to impair the national security of the United States." He did not expand on what this evidence is or how the Singapore-based Broadcom, which will redomicile to the U.S. soon, may harm national security.
+
+The president then went on to warn that similar types of deals will also be blocked by the administration in the future: “The proposed takeover of Qualcomm by the purchaser (Broadcom) is prohibited, and any substantially equivalent merger, acquisition, or takeover, whether effected directly or indirectly, is also prohibited." (See also: Intel May Buy Broadcom to Protect Apple Franchise)
+
+Why the Concern?
+“China is the dominant malicious actor in the Information Domain," said presentation prepared by a National Security Council official obtained by Axios in January. The presentation and an accompanying memo argued that America needs to build a centralized nationwide 5G network within the next three years to protect its economic and cyber security from China.
+
+While White House officials have said no decision has been made on the matter and the FCC Chairman Ajit Pai expressed his disapproval of the proposal, it's clear that the Trump administration is very wary of China's growing might in the technology sector. The memo said China's Huawei, a Qualcomm competitor, uses aggressive pricing, diplomatic support and payments to officials to dominate the global market. (See also: 5 Things to Know About 5G Wireless Technology)
+
+Fears that a Broadcom-Qualcomm merger would see a U.S.-based company lose its edge in such an important market was one on the key risks that the Committee on Foreign Investment in the United States (CFIUS), an interagency panel led by the Treasury Department, expressed in a letter to the two companies, according to the Washington Post. The letter mentioned that Qualcomm, a leader in the 5G market, is trusted by the U.S. government and that any reduction in its competitiveness would leave an opening for Chinese companies, which it has "well known" concerns about, to expand their influence.
+
+"We are all at the start of a race, and you have 5G as a crown jewel that everyone wants to participate in — and every region is racing towards that," Mario Morales, vice president of enabling technologies and semiconductors at global research firm IDC, told the BBC. "Semiconductor technology and companies like Qualcomm will be an important weapon in that 5G arms race [and] the U.S. like other nations and regions want to be first."
+
+The Washington Post reported that CFIUS had several more weeks to present its findings to the president, but chose to act fast, partly due to fears that the merger would soon fall out of its jurisdiction. Broadcom has said it expects to redomicile to the U.S. by April 3. Becoming an American entity would likely have prevented CFIUS from being able to block the deal.
+
+A person familiar with CFIUS's investigation told the Post that the government’s rapid action to block the merger was “brutal” and motivated by “anger.” “If there is one lesson here, it’s don’t screw with the government,” the person said. “This feels a little more personal to me.” (See also: 6 Reasons For Another $6 Trillion Stock Market Correction.)
+
+Broadcom, in a statement, said it was reviewing the order and “strongly disagrees that its proposed acquisition of Qualcomm raises any national security concerns.” Qualcomm did not immediately respond to requests for comment. 
