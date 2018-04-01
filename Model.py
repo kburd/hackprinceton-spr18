@@ -3,6 +3,7 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
+# from Configuration import *
 
 def getValue(key, requestString):
 
@@ -24,39 +25,48 @@ def getValue(key, requestString):
         
 def getHTML(result):
     
-    image = "file:///home/pi/Documents/Erlik/ScalePhotos/"
-    
     if result == -1:
-        image += "Left.png"
+        image = "ScalePhotos/Left.png"
+        bias_rating = "ALT-LEFT"
         
     elif result == -.5:
-        image += "LeftCenter.png"
+        image = "ScalePhotos/LeftCenter.png"
+        bias_rating = "MODERATELY LIBERAL"
         
     elif result == 0:
-        image += "Center.png"
+        image = "ScalePhotos/Center.png"
+        bias_rating = "MODERATE"
         
     elif result == .5:
-        image += "RightCenter.png"
+        image = "ScalePhotos/RightCenter.png"
+        bias_rating  = "RIGHTY"
         
     elif result == 1:
-        image += "Right.png"
+        image = "ScalePhotos/Right.png"
+        bias_rating = "ALT-RIGHT"
         
     else:
         image = ""
+        bias_rating = "TBD"
         
         
-    file = open("layout.html")
+    # file = open("layout.html")
+    file = open("layout_v2.html")
     raw = file.read()
     lines = raw.strip("\n").split("\n")
     
     string = ""
     
+    # for line in lines:
+    #     if line == "*image*":
+    #         line = "src=" + image + " "
+    #     string += line
+
     for line in lines:
-        if line == "*image*":
-            line = "src=" + image + " "
-            #print(line)
+        if line == "*text*":
+            line = bias_rating
         string += line
-    print(string)      
+          
     return string
 
 def biasCalculation(outputs):
@@ -112,6 +122,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             message = "Training Successful"
 
         if mode == "test":
+            
+            print(self.requestline)
 
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
@@ -126,12 +138,14 @@ class RequestHandler(BaseHTTPRequestHandler):
             
             message = getHTML(result)
 
-        elif mode == "img":
-            
-            fileName = getValue("file", self.requestline)
-            print(fileName) #file.read()
-            #return file(string
-
+        # else:
+        #     print(self.requestline)
+        #     string = self.requestline
+        #     string = string.replace("GET /", "")
+        #     index = string.index(" ")
+        #     file = open(string[:index],"rb")
+        #     message = "hello"#file.read()
+            # return file(string)
 
         # Send response status code
         self.send_response(200)
@@ -168,8 +182,3 @@ run()
 #         latest_file = scr.scrape(args[1], 0.1)
 #         idx = Parser()
 #         idx.remove_stop_words_and_punctuation(latest_file)
-
-
-
-
-
