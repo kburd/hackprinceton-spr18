@@ -68,19 +68,13 @@ class Scraper:
             file_name = LEFT_BIAS_PATH + outlet_name + str(i) + '.txt'
             file = open(LEFT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
         else:
-<<<<<<< HEAD
+
             file = open(RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt', 'w')
-  
-=======
             file_name = RIGHT_BIAS_PATH + outlet_name + str(i) + '.txt'
             file = open(file_name, 'w')
->>>>>>> a1fb58569e41b8b3719982bbfb947a0a4df4fbc3
 
         file.write(self.text_from_html(html))
         file.close()
 
         return file_name
-
-# s = Scraper()
-# s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')
 

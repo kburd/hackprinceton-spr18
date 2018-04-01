@@ -83,7 +83,6 @@ class Classifier:
         if os.path.exists(filename):
 
             parser = Parser()
-            print(filename)
             sentences = parser.simpleParse(filename)
         
             scores = [0]*len(self.class_words.keys())
@@ -92,7 +91,6 @@ class Classifier:
                  
                 # loop through classes
                 count = 0
-                print(self.class_words.keys())
                 for c in self.class_words.keys():
                     # calculate score of sentence for each class
                     score = self.calculateClassScore(sentences[i], c, show_details=False)
@@ -100,11 +98,17 @@ class Classifier:
                     scores[count] += score
                     count += 1
                     
-            print(scores)        
             for j in range(len(scores)):
                 scores[j] /= len(sentences)
                 
-            print(scores)      
+            print(scores)
+     
+            temp = scores[0]
+            scores[0] = scores[1]
+            scores[1] = temp
+            
+            print(scores)
+     
             return scores
         
         else:

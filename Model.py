@@ -1,9 +1,8 @@
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
-# from Configuration import *
-import sys
 
 def getValue(key, requestString):
 
@@ -26,8 +25,6 @@ def getValue(key, requestString):
 def biasCalculation(outputs):
     
     string = ''
-    
-    print(outputs)
     
     for out in outputs:
         string += str(out) + ' '
@@ -59,23 +56,17 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == "test":
 
-            config = Configuration()
             link = getValue("link", self.requestline)
             modelName = getValue("modelName", self.requestline)
 
             scraper = Scraper()
             scraper.scrape(link)
-            
-            print("1")
 
             ml = Classifier()
-            print('2')
             ml.load(modelName)
-            print('3')
             outputs = ml.test('./Articles/UserQuery.txt')
-            print('4')
             message = biasCalculation(outputs)
-            print('5')
+
 
         # Send response status code
         self.send_response(200)
@@ -101,17 +92,7 @@ def run():
     print('Running Erlich...')
     httpd.serve_forever()
 
-if __name__ == "__main__":
-    run()
-
-    # # to run article scraper and clean it up:
-    # args = sys.argv
-    # if len(args) > 1:
-    #     scr = Scraper()
-    #     latest_file = scr.scrape(args[1], 0.9)
-    #     idx = Parser()
-    #     idx.remove_stop_words_and_punctuation(latest_file)
-
+run()
 
 
 
