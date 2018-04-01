@@ -65,6 +65,12 @@ class Parser:
 
 # idx = Indexer()
 # idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+<<<<<<< Updated upstream
 idx = Parser()
 idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
 >>>>>>> a1fb58569e41b8b3719982bbfb947a0a4df4fbc3
+=======
+
+# idx = Parser()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+>>>>>>> Stashed changes

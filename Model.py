@@ -1,9 +1,14 @@
+import sys
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
+<<<<<<< Updated upstream
 # from Configuration import *
 import sys
+=======
+#from Configuration import *
+>>>>>>> Stashed changes
 
 def getValue(key, requestString):
 
@@ -102,15 +107,24 @@ def run():
     httpd.serve_forever()
 
 if __name__ == "__main__":
-    run()
+    #run()
 
     # # to run article scraper and clean it up:
+<<<<<<< Updated upstream
     # args = sys.argv
     # if len(args) > 1:
     #     scr = Scraper()
     #     latest_file = scr.scrape(args[1], 0.9)
     #     idx = Parser()
     #     idx.remove_stop_words_and_punctuation(latest_file)
+=======
+    args = sys.argv
+    if len(args) > 1:
+        scr = Scraper()
+        latest_file = scr.scrape(args[1], 0.1)
+        idx = Parser()
+        idx.remove_stop_words_and_punctuation(latest_file)
+>>>>>>> Stashed changes
 
 
 

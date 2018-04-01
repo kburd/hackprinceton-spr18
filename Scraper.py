@@ -83,4 +83,7 @@ class Scraper:
 
 # s = Scraper()
 # s.scrape('https://www.nbcnews.com/politics/donald-trump/trump-tells-aides-not-talk-publicly-about-russia-policy-moves-n861256')
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
