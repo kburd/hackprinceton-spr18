@@ -24,30 +24,36 @@ def getValue(key, requestString):
             return tempValue
         
 def getHTML(result):
+
+    bias_rating = "<p><b><font size='12'>" 
     
     if result == -1:
         image = "ScalePhotos/Left.png"
-        bias_rating = "ALT-LEFT"
+        bias_rating += '<p style="color:DodgerBlue;">ALT-LEFT</p>'
         
     elif result == -.5:
         image = "ScalePhotos/LeftCenter.png"
-        bias_rating = "MODERATELY LIBERAL"
+        bias_rating += '<p style="color:DodgerBlue;">MODERATE LEFT</p>'
         
     elif result == 0:
         image = "ScalePhotos/Center.png"
-        bias_rating = "MODERATE"
+        bias_rating += "<p>MODERATE</p>"
         
     elif result == .5:
         image = "ScalePhotos/RightCenter.png"
-        bias_rating  = "RIGHTY"
+        bias_rating  += "<p style='color:Tomato;'>RIGHTY</p>"
         
     elif result == 1:
         image = "ScalePhotos/Right.png"
-        bias_rating = "ALT-RIGHT"
+        bias_rating += "<p style='color:Tomato;'>ALT-RIGHT</p>"
         
     else:
-        image = ""
-        bias_rating = "TBD"
+        image += ""
+        bias_rating += ""
+
+    bias_rating += "</font></b></p>"
+
+
         
         
     # file = open("layout.html")
