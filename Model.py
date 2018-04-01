@@ -21,16 +21,67 @@ def getValue(key, requestString):
         if tempKey == key:
 
             return tempValue
+        
+def getHTML(result):
+    
+    if result == -1:
+        image = "Left.png"
+        
+    elif result == -.5:
+        image = "LeftCenter.png"
+        
+    elif result == 0:
+        image = "Center.png"
+        
+    elif result == .5:
+        image = "RightCenter.png"
+        
+    elif result == 1:
+        image = "Right.png"
+        
+    else:
+        image = ""
+        
+        
+    file = open("layout.html")
+    raw = file.read()
+    lines = raw.strip("\n").split("\n")
+    
+    string = ""
+    
+    for line in lines:
+        if line == "*image*":
+            line = "src="+image
+        string += line
+        
+    return string
 
 def biasCalculation(outputs):
     
     string = ''
     
-    for out in outputs:
-        string += str(out) + ' '
+    string += "Left: " + str(outputs[0]) + "\n"
+    string += "Center: " + str(outputs[1]) + "\n"
+    string += "Right: " + str(outputs[2]) + "\n"
+    
+    left = outputs[0]
+    center = outputs[1]
+    right = outputs[2]
+    
+    string += "\n"
+    
+    if right > 2 and right > left:
+        result = 1
+    
+    elif right < .75 and left > 2:
+        result = -1
+    
+    else:
+        result = 0
         
-    return string
+    print(string + " " + str(result))
 
+    return result
 
 class RequestHandler(BaseHTTPRequestHandler):
 
@@ -42,10 +93,13 @@ class RequestHandler(BaseHTTPRequestHandler):
 
         if mode == "echo":
             message = "Hola Mundo"
+            
+        if mode == "init":
+            
+            message = getHTML(None)
 
         if mode == 'train':
 
-            config = Configuration()
             modelName = getValue("modelName", self.requestline)
 
             ml = Classifier()
@@ -65,7 +119,10 @@ class RequestHandler(BaseHTTPRequestHandler):
             ml = Classifier()
             ml.load(modelName)
             outputs = ml.test('./Articles/UserQuery.txt')
-            message = biasCalculation(outputs)
+            result = biasCalculation(outputs)
+            
+            message = getHTML(result)
+
 
 
         # Send response status code
@@ -94,8 +151,6 @@ def run():
 
 run()
 
-if __name__ == "__main__":
-    run()
 
     # # to run article scraper and clean it up:
 

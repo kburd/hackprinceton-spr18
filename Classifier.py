@@ -87,6 +87,8 @@ class Classifier:
         
             scores = [0]*len(self.class_words.keys())
             
+            print(self.class_words.keys())
+            
             for i in range(len(sentences)):
                  
                 # loop through classes
