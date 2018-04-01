@@ -3,6 +3,15 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 from Parser import *
 from Classifier import *
 from Scraper import *
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+# from Configuration import *
+import sys
+=======
+#from Configuration import *
+>>>>>>> Stashed changes
+>>>>>>> 29ffb32d14845b1a84e86f6ba738b58dae3f80e6
 
 def getValue(key, requestString):
 
@@ -92,7 +101,30 @@ def run():
     print('Running Erlich...')
     httpd.serve_forever()
 
+<<<<<<< HEAD
 run()
+=======
+if __name__ == "__main__":
+    #run()
+
+    # # to run article scraper and clean it up:
+<<<<<<< Updated upstream
+    # args = sys.argv
+    # if len(args) > 1:
+    #     scr = Scraper()
+    #     latest_file = scr.scrape(args[1], 0.9)
+    #     idx = Parser()
+    #     idx.remove_stop_words_and_punctuation(latest_file)
+=======
+    args = sys.argv
+    if len(args) > 1:
+        scr = Scraper()
+        latest_file = scr.scrape(args[1], 0.1)
+        idx = Parser()
+        idx.remove_stop_words_and_punctuation(latest_file)
+>>>>>>> Stashed changes
+
+>>>>>>> 29ffb32d14845b1a84e86f6ba738b58dae3f80e6
 
 
 

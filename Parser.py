@@ -59,4 +59,22 @@ class Parser:
         
         return text.strip('/n').split('/n')
 
+<<<<<<< HEAD
         ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
+=======
+        ### NEED TO FORCE ALL WORDS TO LOWERCASE BEFORE INSERTING BACK TO FILE
+<<<<<<< HEAD
+=======
+
+# idx = Indexer()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+<<<<<<< Updated upstream
+idx = Parser()
+idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+>>>>>>> a1fb58569e41b8b3719982bbfb947a0a4df4fbc3
+=======
+
+# idx = Parser()
+# idx.remove_stop_words_and_punctuation('Articles/UserQuery.txt')
+>>>>>>> Stashed changes
+>>>>>>> 29ffb32d14845b1a84e86f6ba738b58dae3f80e6
