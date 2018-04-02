@@ -5,7 +5,7 @@
 </head>
 <body>
 <center>
-<h1>Echo Bachman</h1>
+<h1><font size="16">Echo Bachman</font></h1>
 <br>
 <br>
 <input id="bar" type="text" placeholder="Search" size="50%">
@@ -13,9 +13,18 @@
 <br>
 <br>
 <br>
-<img 
-*image*
->
+
+
+*text*
+
+<!--
+<td>
+  <p>
+    YOU <span id="bias_rating"></span>, and you have earned blah-blah...
+  </p>
+</td>
+-->
+
 </center>
 
 </body>
@@ -33,6 +42,7 @@ xhr.onreadystatechange=processRequest;
 function processRequest(e){
 if(xhr.readyState == 4 && xhr.status == 200){
 document.getElementById("main").innerHTML = xhr.responseText;
+document.getElementById('bias_rating').innerHTML='some value...';
 }
 }
 
